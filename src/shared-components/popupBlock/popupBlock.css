@@ -1,0 +1,39 @@
+.toast {
+  transition: 0.32s all ease-in-out;
+}
+
+.success {
+  color: darkgreen;
+}
+
+.error {
+  color: indianred;
+}
+
+.success-toast {
+  box-shadow: 0 0 8px 1px darkgreen;
+  /* opacity: 1 !important; */
+  background: white;
+}
+
+.success-toast .FIcon {
+  color: darkgreen;
+}
+
+.success-toast .toast-title-text {
+  color: darkgreen;
+}
+
+.error-toast {
+  box-shadow: 0 0 8px 1px indianred;
+  /* opacity: 1 !important; */
+  background: white;
+}
+
+.error-toast .FIcon {
+  color: indianred;
+}
+
+.error-toast .toast-title-text {
+  color: indianred;
+}

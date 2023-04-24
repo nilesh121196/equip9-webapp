@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import { ActivateHTTPInterceptor } from "./services/HTTPInterceptor";
+import FullScreenLoader from "./shared-components/fullScreenLoader/fullScreenLoader.jsx";
+import { store } from "./store";
+import PopupBlock from "./shared-components/popupBlock/popupBlock.jsx";
+import { Provider } from "react-redux";
+import { Navigate, Route, Routes } from "react-router-dom";
+import PrivateRoute from "./utils/routing/PrivateRoute";
+import PublicRoute from "./utils/routing/PublicRoute";
+import Login from "./components/login/login";
+import UserRegistration from "./components/user-registration/user-registration";
+import Dashboard from "./components/dashboard/dashboard";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="indexPageHeightWidth">
+      <Provider store={store}>
+        <Routes>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<Navigate replace to="dashboard" />} />
+            <Route path="dashboard" element={<Dashboard />} />
+          </Route>
+
+          <Route path="/" element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+            <Route path="/newuser" element={<UserRegistration />} />
+          </Route>
+        </Routes>
+        <FullScreenLoader />
+        <PopupBlock />
+      </Provider>
     </div>
   );
 }
 
 export default App;
+ActivateHTTPInterceptor(store);
